@@ -2,29 +2,30 @@
 # within the functions. 
 
 # Male Formula 
-def BMR_M_equation(W, H, A):
-    return (10 * (W / 2.2)) + (6.25 * (H * 2.54)) - (5 * A) + 5
+def BMR_M_equation(weight, height, age, activity):
+    return ((10 * (weight / 2.2)) + (6.25 * (height * 2.54)) - (5 * age) + 5) * activity
 # ---example formula to test if it works. Delete when ready to deploy-----
-W = 220
-H = 73
-A = 29
+weight = 220
+height = 73
+age = 29
+activity = 1
 
-BMR = int(BMR_M_equation(W, H, A))
+BMR = int(BMR_M_equation(weight, height, age, activity))
 print(BMR)
 
 # Female equation 
-def BMR_F_equation(W, H, A):
-    return (10 * (W / 2.2)) + (6.25 * (H *2.54)) - (5 * A) - 161
+def BMR_F_equation(weight, height, age, activity):
+    return ((10 * (weight / 2.2)) + (6.25 * (height *2.54)) - (5 * age) - 161) * activity
 # ---example formula to test if it works. Delete when ready to deploy-----
-W = 135
-H = 60
-A = 25
+weight = 135
+height = 60
+age = 25
+activity = 1
 
-BMR = int(BMR_F_equation(W, H, A))
+BMR = int(BMR_F_equation(weight, height, age, activity))
 print (BMR)
 
 # need to make a function that will convert BMR into macros
-# need to also find a way to convert BMR more accuratley based off of level of physical activity. 
 # Function below will take your BMR and convert it to your macros via protein, fat and carbs. 
 
     
