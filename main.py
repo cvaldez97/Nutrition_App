@@ -190,13 +190,16 @@ type_text("One moment while I calculate your calories..")
 type_text("-------------------", 0.1)
 print("")
 
-if sex == "female":
-    BMR_F_equation(height, weight, age, activity)
-else:
-    MBMR = BMR_M_equation(weight, height, age, activity)
+while True:
 
-type_text(f"{name}'s Daily Calories\n - {MBMR}")
+    if sex == "Female":
+        FBMR = BMR_F_equation(weight, height, age, activity)
+        type_text(f"{name}'s Daily Calories:\n - {FBMR}")
+        break
+    else:
+        MBMR = BMR_M_equation(weight, height, age, activity)
+        type_text(f"{name}'s Daily Calories:\n - {MBMR}")
+        break
 
-# Finish converting calories with activity for both male and female
 # Next adjust calories based on goal path
 # finally take final calories and convert them into macros

@@ -12,7 +12,8 @@ def BMR_M_equation(weight, height, age, activity):
         activity = 1.725
     else:
         activity = 1.9
-    return int((10 * (weight / 2.2)) + (6.25 * (height * 2.54)) - (5 * age) + 5) * activity
+    bmr = (10 * (weight / 2.2)) + (6.25 * (height * 2.54)) - (5 * age) + 5
+    return int(bmr * activity)
 
 # Female equation 
 def BMR_F_equation(weight, height, age, activity):
@@ -26,4 +27,6 @@ def BMR_F_equation(weight, height, age, activity):
         activity = 1.725
     else:
         activity = 1.9
-    return ((10 * (weight / 2.2)) + (6.25 * (height *2.54)) - (5 * age) - 161) * activity
+    bmr = (10 * (weight / 2.2)) + (6.25 * (height * 2.54)) - (5 * age) - 161
+    return int(bmr * activity)
+    
