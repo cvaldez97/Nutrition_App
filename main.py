@@ -22,7 +22,7 @@ sex = get_confirmed_choice("Are you Male or Female?: ",sex_map, sex_confirm)
 # --- Goal Selection ---
 print("")
 
-path = get_confirmed_choice("Tell me your main goal:" 
+goal = get_confirmed_choice("Tell me your main goal:" 
 "\n- Fat Loss" 
 "\n- Build Muscle" 
 "\n- Maintain" 
@@ -48,10 +48,22 @@ activity = get_confirmed_choice("What is your level of activity?:"
 
 print("")
 type_text("Calculating your calories now..", 0.05)
-bmr = calculate_bmr(weight, height, age, sex)
-tdee = calculate_tdee(bmr, activity)
 print("")
-type_text(f"{name}'s macros:")
-type_text("-------------------", 0.05)
-type_text(f"bmr - {int(bmr)}")
-type_text(f"tdee - {int(tdee)}")
+bmr = calculate_bmr(weight, height, age, sex)
+tdee = calculate_tdee (bmr, activity)
+calories = target_calories(tdee, goal)
+type_text("-------------------" "\nclient summary" "\n-------------------")
+print("")
+type_text(f"Name: {name}")
+print("")
+type_text(f"Sex: {sex}")
+type_text(f"Age: {age}")
+type_text(f"Weight: {weight}")
+type_text(f"Height: {height}")
+print("")
+type_text(f"Goal: {goal}")
+print("")
+type_text(f"BMR: {int(bmr)}")
+type_text(f"Caloreis: {int(calories)}")
+print("")
+type_text("Macros:")

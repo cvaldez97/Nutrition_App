@@ -10,8 +10,8 @@ def type_text(text, speed=0.05, new_line=True):
     if new_line:
         print()
 
-def goal_confirm(path):
-    return f"You have selected '{path}'. Is this correct?"
+def goal_confirm(goal):
+    return f"You have selected '{goal}'. Is this correct?"
 
 def sex_confirm(sex):
     return f"You have selected '{sex}'. Is this correct?"

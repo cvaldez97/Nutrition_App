@@ -13,3 +13,10 @@ def calculate_bmr(weight, height, age, sex):
     
 def calculate_tdee(bmr, activity):
     return(bmr * activity)
+
+def target_calories(tdee, goal):
+   if goal == "Fat Loss":
+       return tdee - 500
+   if goal == "Build Muscle":
+       return tdee + 250
+   return tdee
