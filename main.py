@@ -4,7 +4,7 @@ from constants import *
 
 # Intro load in
 print("")
-type_text("Nutrition v.01", 0.05)
+type_text("Nutrition v1", 0.05)
 type_text("-------------------", 0.1)
 print("")
 
@@ -19,15 +19,6 @@ print("")
 # --- Sex Input ---   
 sex = get_confirmed_choice("Are you Male or Female?: ",sex_map, sex_confirm)
 
-# --- Goal Selection ---
-print("")
-
-goal = get_confirmed_choice("Tell me your main goal:" 
-"\n- Fat Loss" 
-"\n- Build Muscle" 
-"\n- Maintain" 
-"\nPlease make a selection: ", goal_map, goal_confirm)
-    
 print("")
 # --- weight, height and age input ---
 age = get_confirmed_number("What is your age?: ",int)
@@ -36,6 +27,18 @@ weight = get_confirmed_number("What is your weight in pounds?: ",float)
 print("")
 height = get_confirmed_number("What is your height in inches?: ",float)
 
+print("")
+# --- Goal Selection ---
+goal = get_confirmed_choice("Tell me your main goal:" 
+"\n- Fat Loss" 
+"\n- Build Muscle" 
+"\n- Maintain" 
+"\nPlease make a selection: ", goal_map, goal_confirm)
+
+if goal == "Maintain":
+        goal_weight = weight 
+else: goal_weight = get_confirmed_number("\nwhat is your ideal weight in pounds?: ", float)
+    
 print("")
 # -- activity input --
 activity = get_confirmed_choice("What is your level of activity?:"
@@ -47,11 +50,18 @@ activity = get_confirmed_choice("What is your level of activity?:"
     "\nplease make a selection: ", activity_map, activity_confirm, confirm_key=True)
 
 print("")
+# --- Summary report ---
 type_text("Calculating your calories now..", 0.05)
 print("")
 bmr = calculate_bmr(weight, height, age, sex)
 tdee = calculate_tdee (bmr, activity)
 calories = target_calories(tdee, goal)
+protein = (f"{round(goal_weight)}" + "g")
+protein_calories = (round(goal_weight * 4))
+fat_calories = round(calories * 0.3)
+fat = (f"{round(fat_calories / 9)}") + "g"
+carb_calories = round(calories - (fat_calories + protein_calories)) 
+carbs = (f"{round(carb_calories / 4)}") + "g"
 type_text("-------------------" "\nclient summary" "\n-------------------")
 print("")
 type_text(f"Name: {name}")
@@ -62,8 +72,15 @@ type_text(f"Weight: {weight}")
 type_text(f"Height: {height}")
 print("")
 type_text(f"Goal: {goal}")
+type_text(f"Goal Weight: {goal_weight}")
 print("")
 type_text(f"BMR: {int(bmr)}")
 type_text(f"Caloreis: {int(calories)}")
 print("")
-type_text("Macros:")
+type_text("Macros: ")
+type_text(f"Protein: {protein}" + " / " f"{protein_calories}" + " calories")
+type_text(f"Fat: {fat}" + " / " + f"{fat_calories}" + " calories")
+type_text(f"Carbohydrates: {carbs}" + " / " + f"{carb_calories}" + " calories")
+print("")
+type_text("*** Macros are rounded up to the nearest gram. ***")
+type_text("-------------------")
