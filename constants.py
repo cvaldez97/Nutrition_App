@@ -6,9 +6,19 @@ sex_map = {
 }
 
 goal_map = {
-    "fat loss": "Fat Loss",
-    "build muscle": "Build Muscle",
-    "maintain": "Maintain"
+    "fat loss": {
+            "mild": -250,
+            "moderate": -500,
+            "aggressive": -750,
+            "extreme": -1000
+        },
+    "build muscle": {
+            "lean bulk": +250,
+            "bulk": +500,
+            "heavy bulk": +750,
+            "dirty bulk": +1000   
+        },
+    "maintain": "maintain"
 }
 
 activity_map = {

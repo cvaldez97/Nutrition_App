@@ -8,40 +8,42 @@ type_text("Nutrition v1", 0.05)
 type_text("-------------------", 0.1)
 print("")
 
+user = {}
+
 # --- Name Input ---
 type_text("Please enter your name: ", 0.05, new_line=False)
-name = input().strip().title()
+user["name"] = input().strip().title()
 
-while not name:
-    name = input("Please enter a valid name: ").strip().title()
+while not user["name"]:
+    user["name"] = input("Please enter a valid name: ").strip().title()
 
 print("")
 # --- Sex Input ---   
-sex = get_confirmed_choice("Are you Male or Female?: ",sex_map, sex_confirm)
+user["sex"] = get_confirmed_choice("Are you Male or Female?: ",sex_map, sex_confirm)
 
 print("")
 # --- weight, height and age input ---
-age = get_confirmed_number("What is your age?: ",int)
+user["age"] = get_confirmed_number("What is your age?: ",int)
 print("")
-weight = get_confirmed_number("What is your weight in pounds?: ",float)
+user["weight"] = get_confirmed_number("What is your weight in pounds?: ",float)
 print("")
-height = get_confirmed_number("What is your height in inches?: ",float)
+user["height"] = get_confirmed_number("What is your height in inches?: ",float)
 
 print("")
 # --- Goal Selection ---
-goal = get_confirmed_choice("Tell me your main goal:" 
+user["goal"] = get_confirmed_choice("Tell me your main goal:" 
 "\n- Fat Loss" 
 "\n- Build Muscle" 
 "\n- Maintain" 
-"\nPlease make a selection: ", goal_map, goal_confirm)
+"\nPlease make a selection: ", goal_map, goal_confirm, confirm_key=True)
 
-if goal == "Maintain":
-        goal_weight = weight 
-else: goal_weight = get_confirmed_number("\nwhat is your ideal weight in pounds?: ", float)
-    
+if user["goal"] == "maintain":
+        user["goal_weight"] = user["weight"] 
+else: user["goal_weight"] = get_confirmed_number("\nwhat is your ideal weight in pounds?: ", float)
+   
 print("")
 # -- activity input --
-activity = get_confirmed_choice("What is your level of activity?:"
+user["activity"] = get_confirmed_choice("What is your level of activity?:"
     "\n- sedentary ... (Little to no exercise)."
     "\n- light ... (Light exercise 1-3 days/week)." 
     "\n- moderate ... (exercise 3-5 days/week)." 
@@ -53,34 +55,34 @@ print("")
 # --- Summary report ---
 type_text("Calculating your calories now..", 0.05)
 print("")
-bmr = calculate_bmr(weight, height, age, sex)
-tdee = calculate_tdee (bmr, activity)
-calories = target_calories(tdee, goal)
-protein = (f"{round(goal_weight)}" + "g")
-protein_calories = (round(goal_weight * 4))
-fat_calories = round(calories * 0.3)
-fat = (f"{round(fat_calories / 9)}") + "g"
-carb_calories = round(calories - (fat_calories + protein_calories)) 
-carbs = (f"{round(carb_calories / 4)}") + "g"
+user["bmr"] = calculate_bmr(user["weight"], user["height"], user["age"], user["sex"])
+user["tdee"] = calculate_tdee (user["bmr"], user["activity"])
+user["calories"] = target_calories(user["tdee"], user["goal"])
+user["protein"] = round(user["goal_weight"])
+user["protein_calories"] = (round(user["goal_weight"] * 4))
+user["fat_calories"] = round(user["calories"] * 0.3)
+user["fat"] = round(user["fat_calories"] / 9)
+user["carb_calories"] = round(user["calories"] - (user["fat_calories"] + user["protein_calories"])) 
+user["carbs"] = round(user["carb_calories"] / 4)
 type_text("-------------------" "\nclient summary" "\n-------------------")
 print("")
-type_text(f"Name: {name}")
+type_text(f"Name: {user["name"]}")
 print("")
-type_text(f"Sex: {sex}")
-type_text(f"Age: {age}")
-type_text(f"Weight: {weight}")
-type_text(f"Height: {height}")
+type_text(f"Sex: {user["sex"]}")
+type_text(f"Age: {user["age"]}")
+type_text(f"Weight: {user["weight"]}")
+type_text(f"Height: {user["height"]}")
 print("")
-type_text(f"Goal: {goal}")
-type_text(f"Goal Weight: {goal_weight}")
+type_text(f"Goal: {user["goal"]}")
+type_text(f"Goal Weight: {user["goal_weight"]}")
 print("")
-type_text(f"BMR: {int(bmr)}")
-type_text(f"Caloreis: {int(calories)}")
+type_text(f"BMR: {int(user["bmr"])}")
+type_text(f"Caloreis: {int(user["calories"])}")
 print("")
 type_text("Macros: ")
-type_text(f"Protein: {protein}" + " / " f"{protein_calories}" + " calories")
-type_text(f"Fat: {fat}" + " / " + f"{fat_calories}" + " calories")
-type_text(f"Carbohydrates: {carbs}" + " / " + f"{carb_calories}" + " calories")
+type_text(f"Protein: {user["protein"]}g" + " / " f"{user["protein_calories"]}" + " calories")
+type_text(f"Fat: {user["fat"]}g" + " / " + f"{user["fat_calories"]}" + " calories")
+type_text(f"Carbohydrates: {user["carbs"]}g" + " / " + f"{user["carb_calories"]}" + " calories")
 print("")
 type_text("*** Macros are rounded up to the nearest gram. ***")
 type_text("-------------------")
