@@ -1,5 +1,5 @@
-import time
 import sys
+import time
 
 # Typewriter effect
 def type_text(text, speed=0.05, new_line=True):
