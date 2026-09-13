@@ -33,14 +33,14 @@ def get_confirmed_choice(prompt, options_map, confirm_function, confirm_key=Fals
 
         print("")
 
-        confirmation_value = user_input if confirm_key else choice
+        confirmation_value = user_input 
         type_text(confirm_function(confirmation_value))
 
         type_text("Type Yes or No: ", new_line=False)
         confirm = input().strip().lower()
 
         if confirm in ["yes", "y"]:
-            return choice
+            return user_input if confirm_key else choice
 
         elif confirm in ["no", "n"]:
             type_text("Alright, let's try again...\n")

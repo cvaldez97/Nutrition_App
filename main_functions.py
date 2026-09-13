@@ -37,23 +37,29 @@ def user_input():
         "\n- Build Muscle" 
         "\n- Maintain" 
         "\nPlease make a selection: ", goal_map, goal_confirm, confirm_key=True)
-
+        #---Goal Weight---
         if user["goal"] == "maintain":
                 user["goal_weight"] = user["weight"] 
         else: user["goal_weight"] = get_confirmed_number("\nwhat is your ideal weight in pounds?: ", float)
-
-        #if user["goal"] != "maintain":
-            #user["aggression"] = get_confirmed_choice("how aggressive do you want to be?: ", goal_map[user["goal"]], goal_confirm, confirm_key=True)
+        print("")
+        #---Aggresion calculation
+        if user["goal"] != "maintain":
+            user["aggression"] = get_confirmed_choice("how aggressive do you want to be?:" \
+            "\n - Mild - 0.5 pounds a week." \
+            "\n - Moderate - 1.0 pound a week." \
+            "\n - Aggressive - 1.5 pounds a week." \
+            "\n - Extreme - 2.0 pounds a week. " \
+            "\nPlease make a selection: ", aggression_map[user["goal"]], goal_confirm, confirm_key=True)
         
         print("")
         # -- activity input --
         user["activity"] = get_confirmed_choice("What is your level of activity?:"
-            "\n- sedentary ... (Little to no exercise)."
-            "\n- light ... (Light exercise 1-3 days/week)." 
-            "\n- moderate ... (exercise 3-5 days/week)." 
-            "\n- hard ... (exercise 6-7 days/week)." 
-            "\n- very hard ... (training, physical labor, or 2x/day training). "
-            "\nplease make a selection: ", activity_map, activity_confirm, confirm_key=True)
+            "\n- Sedentary ... (Little to no exercise)."
+            "\n- Light ... (Light exercise 1-3 days/week)." 
+            "\n- Moderate ... (exercise 3-5 days/week)." 
+            "\n- Hard ... (exercise 6-7 days/week)." 
+            "\n- Very Hard ... (training, physical labor, or 2x/day training). "
+            "\nplease make a selection: ", activity_map, activity_confirm)
         return user
     
 def summary_report(user):
@@ -62,7 +68,10 @@ def summary_report(user):
     print("")
     user["bmr"] = round(calculate_bmr(user["weight"], user["height"], user["age"], user["sex"]))
     user["tdee"] = round(calculate_tdee(user["bmr"], user["activity"]))
-    user["calories"] = round(target_calories(user["tdee"], user["goal"]))
+    if user["goal"] != "maintain":
+        user["calories"] = round(target_calories(user["tdee"], user["goal"], user["aggression"]))
+    else:
+          user["calories"] = user["tdee"]
     user["protein"] = round(user["goal_weight"])
     user["protein_calories"] = (round(user["goal_weight"] * 4))
     user["fat_calories"] = round(user["calories"] * 0.3)
