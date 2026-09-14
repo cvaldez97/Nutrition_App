@@ -4,13 +4,11 @@ sex_map = {
     "m": "Male",
     "f": "Female"
 }
-
 goal_map = {
     "fat loss": "Fat Loss",
     "build muscle": "Build Muscle",
     "maintain": "maintain"
 }
-
 aggression_map = {
     "fat loss": {
         "mild": -250,
@@ -25,7 +23,6 @@ aggression_map = {
         "extreme": 1000
     }
 }
-
 activity_map = {
     "sedentary": 1.2,
     "light": 1.375,
