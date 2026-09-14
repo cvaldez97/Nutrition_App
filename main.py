@@ -1,4 +1,4 @@
-from load_in import *
+from load_in import load_in
 from user_input import user_input
 from summary_report import summary_report
 

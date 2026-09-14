@@ -1,6 +1,5 @@
-from functions import *
-from constants import *
-from calculator import *
+from functions import get_confirmed_choice, get_confirmed_number, type_text
+from constants import sex_map, goal_map, aggression_map, activity_map
 
 # --- User ---
 def user_input():

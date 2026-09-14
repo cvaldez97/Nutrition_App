@@ -1,5 +1,5 @@
-from functions import *
-from calculator import *
+from functions import type_text
+from calculator import calculate_bmr, calculate_tdee, target_calories
 
 # --- User Summary Report ---
 def summary_report(user):
