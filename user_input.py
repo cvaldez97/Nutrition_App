@@ -14,7 +14,7 @@ def user_input():
         print("")
 
         # --- Sex Input ---   
-        user["sex"] = get_confirmed_choice("Are you Male or Female?: ",sex_map, sex_confirm)
+        user["sex"] = get_confirmed_choice("Are you Male or Female?: ",sex_map)
         print("")
 
         # --- Weight, Height and Age Input ---
@@ -30,7 +30,7 @@ def user_input():
         "\n- Fat Loss" 
         "\n- Build Muscle" 
         "\n- Maintain" 
-        "\nPlease make a selection: ", goal_map, goal_confirm, confirm_key=True)
+        "\nPlease make a selection: ", goal_map, confirm_key=True)
 
         # --- Goal Weight ---
         if user["goal"] == "maintain":
@@ -45,7 +45,7 @@ def user_input():
             "\n - Moderate ... (1.0 pound a week)." \
             "\n - Aggressive ... (1.5 pounds a week)." \
             "\n - Extreme ... (2.0 pounds a week). " \
-            "\nPlease make a selection: ", aggression_map[user["goal"]], goal_confirm, confirm_key=True)
+            "\nPlease make a selection: ", aggression_map[user["goal"]], confirm_key=True)
             print("")
         
         # --- Activity Input ---
@@ -55,5 +55,5 @@ def user_input():
             "\n- Moderate ... (exercise 3-5 days/week)." 
             "\n- Hard ... (exercise 6-7 days/week)." 
             "\n- Very Hard ... (training, physical labor, or 2x/day training). "
-            "\nplease make a selection: ", activity_map, activity_confirm)
+            "\nplease make a selection: ", activity_map)
         return user

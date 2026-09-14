@@ -1,15 +1,7 @@
 from load_in import type_text
 
-def goal_confirm(goal):
-    return f"You have selected '{goal}'. Is this correct?"
-
-def sex_confirm(sex):
-    return f"You have selected '{sex}'. Is this correct?"
-
-def activity_confirm(activity):
-    return f"You have selected '{activity}'. Is this correct?"
-
-def get_confirmed_choice(prompt, options_map, confirm_function, confirm_key=False):
+# --- Confirm User Goal Input ---
+def get_confirmed_choice(prompt, options_map, confirm_key=False):
     while True:
         type_text(prompt, new_line=False)
         user_input = input().strip().lower()
@@ -19,7 +11,7 @@ def get_confirmed_choice(prompt, options_map, confirm_function, confirm_key=Fals
         choice = options_map[user_input]
         print("")
         confirmation_value = user_input 
-        type_text(confirm_function(confirmation_value))
+        type_text(f"You have selected '{confirmation_value}'. Is this correct?")
         type_text("Type Yes or No: ", new_line=False)
         confirm = input().strip().lower()
         if confirm in ["yes", "y"]:
@@ -29,6 +21,7 @@ def get_confirmed_choice(prompt, options_map, confirm_function, confirm_key=Fals
         else:
             type_text("Please type Yes or No only.\n")
 
+# --- Confirm User Number Input ---
 def get_confirmed_number(prompt, number_type=float):
     while True:
         type_text(prompt, new_line=False)
