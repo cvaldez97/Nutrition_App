@@ -1,5 +1,4 @@
 from constants import aggression_map
-from user_input import user_input
 
 # --- Calculate User BMR ---
 def calculate_bmr(weight, height, age, sex):
@@ -24,29 +23,22 @@ def target_calories(tdee, goal, aggression):
    return tdee + aggression_map[goal][aggression]
 
 # --- Calculate Protein ---
-def target_protein(user):
-    user["protein"] = user["goal_weight"]
-    return user["protein]"]
+def target_protein(goal_weight):
+    return goal_weight
 
-def target_protein_cals(user):
-    user["protein_cals"] = user["protein"] * 4
-    return user["protein_cals"]
+def target_protein_cals(protein):
+    return protein * 4
 
 # --- Calculate Fat ---
-def target_fat(user):
-    user["fat"] = user["fat_cals"] / 9
-    return user["fat"]
-    
-def target_fat_cals(user):
-    user["fat_cals"] = user["calories"] * 0.3
-    return user["fat_cals"]
+def target_fat_cals(calories):
+    return calories * 0.3
+
+def target_fat(fat_cals):
+    return fat_cals / 9
     
 # --- Calculate carbs ---
-def target_carbs(user):
-    user["carbs"] = user["carb_cals"] / 4
-    return user["carbs"]
+def target_carbs_cals(calories, fat_cals, protein_cals):
+    return calories - (fat_cals + protein_cals)
 
-def target_carbs_cals(user):
-    user["carb_cals"] = user["calories"] - (user["fat_cals"] + user["protein_cals"])
-    return user["carb_cals"]
-    
+def target_carbs(carb_cals):
+    return carb_cals / 4

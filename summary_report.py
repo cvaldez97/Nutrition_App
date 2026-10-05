@@ -1,5 +1,5 @@
 from functions import type_text
-from calculator import calculate_bmr, calculate_tdee, target_calories
+from calculator import calculate_bmr, calculate_tdee, target_calories, target_protein, target_protein_cals, target_fat_cals, target_fat, target_carbs_cals, target_carbs
 
 # --- User Summary Report ---
 def summary_report(user):
@@ -12,12 +12,12 @@ def summary_report(user):
         user["calories"] = round(target_calories(user["tdee"], user["goal"], user["aggression"]))
     else:
           user["calories"] = user["tdee"]
-    user["protein"] = round(user["goal_weight"])
-    user["protein_calories"] = (round(user["goal_weight"] * 4))
-    user["fat_calories"] = round(user["calories"] * 0.3)
-    user["fat"] = round(user["fat_calories"] / 9)
-    user["carb_calories"] = round(user["calories"] - (user["fat_calories"] + user["protein_calories"])) 
-    user["carbs"] = round(user["carb_calories"] / 4)
+    user["protein"] = round(target_protein(user["goal_weight"]))
+    user["protein_calories"] = round(target_protein_cals(user["goal_weight"]))
+    user["fat_calories"] = round(target_fat_cals(user["calories"]))
+    user["fat"] = round(target_fat(user["fat_calories"]))
+    user["carb_calories"] = round(target_carbs_cals(user["calories"], user["fat_calories"], user["protein_calories"])) 
+    user["carbs"] = round(target_carbs(user["carb_calories"]))
     type_text("-------------------" "\nclient summary" "\n-------------------")
     print("")
     type_text(f"Name: {user["name"]}")
