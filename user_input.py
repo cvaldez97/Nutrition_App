@@ -5,15 +5,22 @@ from constants import sex_map, goal_map, aggression_map, activity_map
 def user_input():
         user = {}
 
-        # --- Name ---
-        type_text("Please enter your name: ", 0.05, new_line=False)
+        # --- First & Last Name ---
+        type_text("First and last name: ", 0.05, new_line=False)
         user["name"] = input().strip().title()
         while not user["name"]:
             user["name"] = input("Please enter a valid name: ").strip().title()
         print("")
 
+        # --- Email Address ---
+        type_text("Email address: ", 0.05, new_line=False)
+        user["email"] = input()
+        while not user["email"]:
+              user["email"] = input("Please enter your email address:")
+        print("")
+
         # --- Sex Input ---   
-        user["sex"] = get_confirmed_choice("Are you Male or Female?: ",sex_map)
+        user["sex"] = get_confirmed_choice("Male or Female?: ",sex_map)
         print("")
 
         # --- Weight, Height and Age Input ---

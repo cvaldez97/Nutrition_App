@@ -1,8 +1,6 @@
 sex_map = {
     "male": "Male",
     "female": "Female",
-    "m": "Male",
-    "f": "Female"
 }
 goal_map = {
     "fat loss": "Fat Loss",
