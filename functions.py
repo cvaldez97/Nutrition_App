@@ -22,12 +22,18 @@ def get_confirmed_choice(prompt, options_map, confirm_key=False):
             type_text("Please type Yes or No only.\n")
 
 # --- Confirm User Number Input ---
-def get_confirmed_number(prompt, number_type=float):
+def get_confirmed_number(prompt, number_type=float, minimum=None, maximum=None):
     while True:
         type_text(prompt, new_line=False)
         try:
             value = number_type(input().strip())
         except ValueError:
+            type_text("Please enter a valid number.\n")
+            continue
+        if minimum is not None and value < minimum:
+            type_text("Please enter a valid number.\n")
+            continue
+        if maximum is not None and value > maximum:
             type_text("Please enter a valid number.\n")
             continue
         type_text(f"You entered '{value}'. Is this correct?")

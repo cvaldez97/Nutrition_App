@@ -10,11 +10,11 @@ def user_input():
         print("")
 
         # --- Weight, Height and Age Input ---
-        user["age"] = get_confirmed_number("What is your age?: ",int)
+        user["age"] = get_confirmed_number("What is your age?: ",int, minimum=1, maximum=120,)
         print("")
-        user["weight"] = get_confirmed_number("What is your weight in pounds?: ",float)
+        user["weight"] = get_confirmed_number("What is your weight in pounds?: ",float, minimum=60, maximum=850,)
         print("")
-        user["height"] = get_confirmed_number("What is your height in inches?: ",float)
+        user["height"] = get_confirmed_number("What is your height in inches?: ",float, minimum=36, maximum=100)
         print("")
 
         # --- Goal Selection ---
@@ -27,7 +27,7 @@ def user_input():
         # --- Goal Weight ---
         if user["goal"] == "maintain":
                 user["goal_weight"] = user["weight"] 
-        else: user["goal_weight"] = get_confirmed_number("\nWhat is your ideal weight in pounds?: ", float)
+        else: user["goal_weight"] = get_confirmed_number("\nWhat is your ideal weight in pounds?: ", float, minimum=60, maximum=850)
         print("")
 
         # --- Aggresion Calculation ---
