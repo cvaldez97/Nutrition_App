@@ -1,5 +1,7 @@
 from functions import type_text
 from calculator import calculate_bmr, calculate_tdee, target_calories, target_protein, target_protein_cals, target_fat_cals, target_fat, target_carbs_cals, target_carbs
+from constants import goal_map
+from formatters import format_height
 
 # --- User Summary Report ---
 def summary_report(user):
@@ -11,7 +13,7 @@ def summary_report(user):
     else:
           user["calories"] = user["tdee"]
     user["protein"] = round(target_protein(user["goal_weight"]))
-    user["protein_calories"] = round(target_protein_cals(user["goal_weight"]))
+    user["protein_calories"] = round(target_protein_cals(user["protein"]))
     user["fat_calories"] = round(target_fat_cals(user["calories"]))
     user["fat"] = round(target_fat(user["fat_calories"]))
     user["carb_calories"] = round(target_carbs_cals(user["calories"], user["fat_calories"], user["protein_calories"])) 
@@ -24,23 +26,23 @@ def summary_report(user):
     type_text(f"Client: {user["name"]}")
     type_text(f"Email: {user["email"]}")
     print("")
-    type_text(f"Goal: {user["goal"]}")
-    type_text(f"Goal Weight: {user["goal_weight"]}")
+    type_text(f"Goal: {goal_map[user["goal"]]}")
+    type_text(f"Goal Weight: {int(user["goal_weight"])} lb")
     print("")
     type_text("Current Metrics:")
     type_text(f"Sex: {user["sex"]}")
-    type_text(f"Weight: {user["weight"]}")
-    type_text(f"Height: {user["height"]}")
+    type_text(f"Weight: {int(user["weight"])} lb")
+    type_text(format_height(user["height"]))
     type_text(f"Age: {user["age"]}")
     print("")
-    type_text(f"Calorie Target: {int(user["calories"])} CALORIES")
+    type_text(f"Calorie Target: {int(user["calories"])} Calories")
     print("")
     type_text("Macros:")
     type_text(f"Protein: {user["protein"]}g")
     type_text(f"Carbohydrates: {user["carbs"]}g")
     type_text(f"Fat: {user["fat"]}g")
     print("")
-    type_text("COACH NOTES")
+    type_text("Coach Notes")
     type_text("**place holder**")
     print("")
     type_text("-------------------")

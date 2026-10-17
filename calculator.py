@@ -18,9 +18,16 @@ def calculate_tdee(bmr, activity):
 
 # --- Calculate User Calories ---
 def target_calories(tdee, goal, aggression):
-   if goal == "maintain":
+    if goal == "maintain":
        return tdee
-   return tdee + aggression_map[goal][aggression]
+    if goal not in aggression_map:
+        raise ValueError("Invalid goal")
+    if aggression not in aggression_map[goal]:
+       raise ValueError("Invalid aggression level")
+    cals = tdee  + aggression_map[goal][aggression]
+    if cals <= 0:
+        raise ValueError("Calories cannot be at or below 0")
+    return cals
 
 # --- Calculate Protein ---
 def target_protein(goal_weight):
@@ -38,6 +45,8 @@ def target_fat(fat_cals):
     
 # --- Calculate carbs ---
 def target_carbs_cals(calories, fat_cals, protein_cals):
+    if calories - (fat_cals + protein_cals) < 0:
+        raise ValueError("Protein and fat calories exceed the calorie target")
     return calories - (fat_cals + protein_cals)
 
 def target_carbs(carb_cals):
