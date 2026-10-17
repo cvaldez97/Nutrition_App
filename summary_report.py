@@ -3,7 +3,7 @@ from constants import goal_map
 from formatters import format_height
 
 # --- User Summary Report ---
-def summary_report(user):
+def summary_report(user, summary):
     print("")
     type_text("-------------------")
     type_text("Valdez Nutrition")
@@ -22,12 +22,12 @@ def summary_report(user):
     type_text(format_height(user["height"]))
     type_text(f"Age: {user["age"]}")
     print("")
-    type_text(f"Calorie Target: {int(user["calories"])} Calories")
+    type_text(f"Calorie Target: {int(summary["calories"])} Calories")
     print("")
     type_text("Macros:")
-    type_text(f"Protein: {user["protein"]}g")
-    type_text(f"Carbohydrates: {user["carbs"]}g")
-    type_text(f"Fat: {user["fat"]}g")
+    type_text(f"Protein: {summary["protein"]}g")
+    type_text(f"Carbohydrates: {summary["carbs"]}g")
+    type_text(f"Fat: {summary["fat"]}g")
     print("")
     type_text("Coach Notes")
     type_text("**place holder**")
