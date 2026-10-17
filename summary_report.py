@@ -1,23 +1,10 @@
 from functions import type_text
-from calculator import calculate_bmr, calculate_tdee, target_calories, target_protein, target_protein_cals, target_fat_cals, target_fat, target_carbs_cals, target_carbs
 from constants import goal_map
 from formatters import format_height
 
 # --- User Summary Report ---
 def summary_report(user):
     print("")
-    user["bmr"] = round(calculate_bmr(user["weight"], user["height"], user["age"], user["sex"]))
-    user["tdee"] = round(calculate_tdee(user["bmr"], user["activity"]))
-    if user["goal"] != "maintain":
-        user["calories"] = round(target_calories(user["tdee"], user["goal"], user["aggression"]))
-    else:
-          user["calories"] = user["tdee"]
-    user["protein"] = round(target_protein(user["goal_weight"]))
-    user["protein_calories"] = round(target_protein_cals(user["protein"]))
-    user["fat_calories"] = round(target_fat_cals(user["calories"]))
-    user["fat"] = round(target_fat(user["fat_calories"]))
-    user["carb_calories"] = round(target_carbs_cals(user["calories"], user["fat_calories"], user["protein_calories"])) 
-    user["carbs"] = round(target_carbs(user["carb_calories"]))
     type_text("-------------------")
     type_text("Valdez Nutrition")
     type_text("Nutrition Blueprint")

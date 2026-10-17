@@ -51,3 +51,36 @@ def target_carbs_cals(calories, fat_cals, protein_cals):
 
 def target_carbs(carb_cals):
     return carb_cals / 4
+
+
+# --- Build Calculated Summary Data ---
+def build_summary(user):
+    bmr = round(calculate_bmr(
+        user["weight"], user["height"], user["age"], user["sex"]
+    ))
+    tdee = round(calculate_tdee(bmr, user["activity"]))
+
+    if user["goal"] == "maintain":
+        calories = tdee
+    else:
+        calories = round(target_calories(
+            tdee, user["goal"], user["aggression"]
+        ))
+
+    protein = round(target_protein(user["goal_weight"]))
+    protein_calories = round(target_protein_cals(protein))
+    fat_calories = round(target_fat_cals(calories))
+    fat = round(target_fat(fat_calories))
+    carb_calories = round(
+        target_carbs_cals(calories, fat_calories, protein_calories)
+    )
+    carbs = round(target_carbs(carb_calories))
+
+    return {
+        "bmr": bmr,
+        "tdee": tdee,
+        "calories": calories,
+        "protein": protein,
+        "fat": fat,
+        "carbs": carbs,
+    }
