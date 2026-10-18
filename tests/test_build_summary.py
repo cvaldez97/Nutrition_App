@@ -1,7 +1,8 @@
 import unittest
-
 from calculator import build_summary
 
+# python -m unittest discover -s tests -v
+# ^^^ to run tests in root of project ^^^
 
 class TestBuildSummary(unittest.TestCase):
     def make_user(self, goal):

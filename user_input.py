@@ -10,7 +10,7 @@ def user_input():
         print("")
 
         # --- Weight, Height and Age Input ---
-        user["age"] = get_confirmed_number("What is your age?: ",int, minimum=1, maximum=120,)
+        user["age"] = get_confirmed_number("What is your age?: ",int, minimum=18, maximum=120,)
         print("")
         user["weight"] = get_confirmed_number("What is your weight in pounds?: ",float, minimum=60, maximum=850,)
         print("")
@@ -27,7 +27,16 @@ def user_input():
         # --- Goal Weight ---
         if user["goal"] == "maintain":
                 user["goal_weight"] = user["weight"] 
-        else: user["goal_weight"] = get_confirmed_number("\nWhat is your ideal weight in pounds?: ", float, minimum=60, maximum=850)
+        else: 
+              while True: 
+                user["goal_weight"] = get_confirmed_number("\nWhat is your ideal weight in pounds?: ", float, minimum=60, maximum=850)
+                if user["goal"] == "fat loss" and user["goal_weight"] >= user["weight"]:
+                    type_text("For fat loss, goal weight must be below current weight. Please try again.\n")
+                    continue             
+                if user["goal"] == "build muscle" and user["goal_weight"] <= user["weight"]:
+                    type_text("For muscle gain, goal weight must be above current weight. Please try again.\n")
+                    continue
+                break
         print("")
 
         # --- Aggresion Calculation ---
