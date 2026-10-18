@@ -18,7 +18,7 @@ def calculate_tdee(bmr, activity):
 
 # --- Calculate User Calories ---
 def target_calories(tdee, goal, aggression):
-    if goal == "maintain":
+    if goal == "maintain weight":
        return tdee
     if goal not in aggression_map:
         raise ValueError("Invalid goal")
@@ -52,7 +52,6 @@ def target_carbs_cals(calories, fat_cals, protein_cals):
 def target_carbs(carb_cals):
     return carb_cals / 4
 
-
 # --- Build Calculated Summary Data ---
 def build_summary(user):
     bmr = round(calculate_bmr(
@@ -60,7 +59,7 @@ def build_summary(user):
     ))
     tdee = round(calculate_tdee(bmr, user["activity"]))
 
-    if user["goal"] == "maintain":
+    if user["goal"] == "maintain weight":
         calories = tdee
     else:
         calories = round(target_calories(

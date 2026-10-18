@@ -27,35 +27,35 @@ class TestCalculateTDEE(unittest.TestCase):
 
 # --- Test Target Calories ---
 class TestTargetCalories(unittest.TestCase):
-    def test_target_calories_maintain_moderate(self):
-        result = target_calories(2500, "maintain", "moderate")
+    def test_target_calories_maintain_weight_moderate(self):
+        result = target_calories(2500, "maintain weight", "moderate")
         self.assertAlmostEqual(result, 2500)
     
-    def test_target_calories_fat_loss_moderate(self):
-        result = target_calories(2500, "fat loss", "moderate")
+    def test_target_calories_lose_weight_moderate(self):
+        result = target_calories(2500, "lose weight", "moderate")
         self.assertEqual(result, 2000)
 
     def test_target_calories_invalid_goal(self):
         with self.assertRaises(ValueError):
-            result = target_calories(2500, "lose weight", "moderate")
+            result = target_calories(2500, "invalid goal", "moderate")
             self.assertRaises(result, ValueError)
 
     def test_target_calories_invalid_aggression(self):
         with self.assertRaises(ValueError):
-            result = target_calories(2500, "fat loss", "very aggressive")
+            result = target_calories(2500, "lose weight", "very aggressive")
             self.assertRaises(result, ValueError)
 
-    def test_target_calories_build_muscle_moderate(self):
-        result = target_calories(2500, "build muscle", "moderate")
+    def test_target_calories_gain_weight_moderate(self):
+        result = target_calories(2500, "gain weight", "moderate")
         self.assertAlmostEqual(result, 3000)
 
-    def test_target_calories_fat_loss_extreme(self):
-        result = target_calories(2500, "fat loss", "extreme")
+    def test_target_calories_lose_weight_extreme(self):
+        result = target_calories(2500, "lose weight", "extreme")
         self.assertAlmostEqual(result, 1500)
 
     def test_target_calories_if_calories_is_below_0(self):
         with self.assertRaises(ValueError):
-            target_calories(700, "fat loss", "extreme")
+            target_calories(700, "lose weight", "extreme")
 
 # --- Test Protein Calculations ---
 class TestProteinCalculations(unittest.TestCase):

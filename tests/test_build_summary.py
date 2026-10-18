@@ -18,7 +18,7 @@ class TestBuildSummary(unittest.TestCase):
         }
 
     def test_maintenance_goal(self):
-        user = self.make_user("maintain")
+        user = self.make_user("maintain weight")
         original_user = user.copy()
 
         summary = build_summary(user)
@@ -29,8 +29,8 @@ class TestBuildSummary(unittest.TestCase):
         self.assertEqual(summary["calories"], 2141)
         self.assertEqual(summary["protein"], 180)
 
-    def test_fat_loss_goal(self):
-        user = self.make_user("fat loss")
+    def test_lose_weight_goal(self):
+        user = self.make_user("lose weight")
         original_user = user.copy()
 
         summary = build_summary(user)
@@ -39,8 +39,8 @@ class TestBuildSummary(unittest.TestCase):
         self.assertEqual(summary["calories"], 1641)
         self.assertEqual(summary["protein"], 180)
 
-    def test_build_muscle_goal(self):
-        user = self.make_user("build muscle")
+    def test_gain_weight_goal(self):
+        user = self.make_user("gain weight")
         original_user = user.copy()
 
         summary = build_summary(user)

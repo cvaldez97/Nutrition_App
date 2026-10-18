@@ -19,28 +19,28 @@ def user_input():
 
         # --- Goal Selection ---
         user["goal"] = get_confirmed_choice("Tell me your main goal:" 
-        "\n- Fat Loss" 
-        "\n- Build Muscle" 
-        "\n- Maintain" 
+        "\n- Lose Weight" 
+        "\n- Gain Weight" 
+        "\n- Maintain Weight" 
         "\nPlease make a selection: ", goal_map, confirm_key=True)
 
         # --- Goal Weight ---
-        if user["goal"] == "maintain":
+        if user["goal"] == "maintain weight":
                 user["goal_weight"] = user["weight"] 
         else: 
               while True: 
                 user["goal_weight"] = get_confirmed_number("\nWhat is your ideal weight in pounds?: ", float, minimum=60, maximum=850)
-                if user["goal"] == "fat loss" and user["goal_weight"] >= user["weight"]:
-                    type_text("For fat loss, goal weight must be below current weight. Please try again.\n")
+                if user["goal"] == "lose weight" and user["goal_weight"] >= user["weight"]:
+                    type_text("For weight loss, goal weight must be below current weight. Please try again.\n")
                     continue             
-                if user["goal"] == "build muscle" and user["goal_weight"] <= user["weight"]:
-                    type_text("For muscle gain, goal weight must be above current weight. Please try again.\n")
+                if user["goal"] == "gain weight" and user["goal_weight"] <= user["weight"]:
+                    type_text("For gaining weight, goal weight must be above current weight. Please try again.\n")
                     continue
                 break
         print("")
 
         # --- Aggresion Calculation ---
-        if user["goal"] != "maintain":
+        if user["goal"] != "maintain weight":
             user["aggression"] = get_confirmed_choice("How aggressive do you want to be?:" \
             "\n - Mild ... (0.5 pounds a week)." \
             "\n - Moderate ... (1.0 pound a week)." \

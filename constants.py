@@ -3,18 +3,18 @@ sex_map = {
     "female": "Female",
 }
 goal_map = {
-    "fat loss": "Fat Loss",
-    "build muscle": "Build Muscle",
-    "maintain": "maintain"
+    "lose weight": "Lose Weight",
+    "gain weight": "Gain Weight",
+    "maintain weight": "Maintain Weight"
 }
 aggression_map = {
-    "fat loss": {
+    "lose weight": {
         "mild": -250,
         "moderate": -500,
         "aggressive": -750,
         "extreme": -1000
     },
-    "build muscle": {
+    "gain weight": {
         "mild": 250,
         "moderate": 500,
         "aggressive": 750,

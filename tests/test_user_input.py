@@ -6,10 +6,10 @@ from user_input import user_input
 # ^^^ to run tests in root of project ^^^
 
 class TestGoalWeightValidation(unittest.TestCase):
-    def test_fat_loss_rejects_goal_weight_above_current_weight(self):
+    def test_lose_weight_rejects_goal_weight_above_current_weight(self):
         # Choices: sex, goal, aggression, activity level
         with patch("user_input.get_confirmed_choice") as choices:
-            choices.side_effect = ["Male", "fat loss", "moderate", 1.2]
+            choices.side_effect = ["Male", "lose weight", "moderate", 1.2]
 
             # Numbers: age, current weight, height,
             # then an invalid and valid goal weight
@@ -24,9 +24,9 @@ class TestGoalWeightValidation(unittest.TestCase):
         self.assertEqual(user["goal_weight"], 170)
         self.assertEqual(numbers.call_count, 5)
 
-    def test_build_muscle_rejects_goal_weight_below_current_weight(self):
+    def test_gain_weight_rejects_goal_weight_below_current_weight(self):
         with patch("user_input.get_confirmed_choice") as choices:
-            choices.side_effect = ["Male", "build muscle", "moderate", 1.2]
+            choices.side_effect = ["Male", "gain weight", "moderate", 1.2]
 
             with patch("user_input.get_confirmed_number") as numbers:
                 numbers.side_effect = [30, 180, 70, 170, 190]
